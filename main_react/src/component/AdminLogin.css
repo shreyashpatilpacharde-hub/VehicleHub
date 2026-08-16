@@ -1,0 +1,193 @@
+/* ================================
+   ADMIN LOGIN PAGE
+================================ */
+
+.admin-auth-page {
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #f7fafd;
+
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+
+/* ================================
+   LOGIN CARD
+================================ */
+
+.admin-auth-card {
+    width: 100%;
+    max-width: 850px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    background: #ffffff;
+
+    border: 1px solid #dce7f2;
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 25px rgba(49, 91, 133, 0.08);
+}
+
+
+/* ================================
+   LEFT HERO SECTION
+================================ */
+
+.admin-auth-hero {
+    background: #eef5fb;
+
+    padding: 45px 35px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.admin-auth-hero h2 {
+    margin: 0 0 15px;
+
+    color: #315b85;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.admin-auth-hero p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* ================================
+   LOGIN FORM
+================================ */
+
+.admin-auth-form {
+    padding: 45px 35px;
+
+    background: #ffffff;
+}
+
+.admin-form-group {
+    margin-bottom: 20px;
+}
+
+.admin-form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* ================================
+   INPUT
+================================ */
+
+.admin-input {
+    width: 100%;
+
+    height: 45px;
+
+    padding: 0 13px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cbd8e6;
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #26384a;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.admin-input::placeholder {
+    color: #94a3b8;
+}
+
+.admin-input:focus {
+    border-color: #7aa7d1;
+
+    box-shadow: 0 0 0 3px rgba(122, 167, 209, 0.15);
+}
+
+
+/* ================================
+   LOGIN BUTTON
+================================ */
+
+.admin-login-btn {
+    width: 100%;
+
+    height: 45px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #7aa7d1;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.admin-login-btn:hover {
+    background: #6795c1;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .admin-auth-page {
+        padding: 20px;
+    }
+
+    .admin-auth-card {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-auth-hero {
+        padding: 30px 25px;
+    }
+
+    .admin-auth-hero h2 {
+        font-size: 25px;
+    }
+
+    .admin-auth-form {
+        padding: 30px 25px;
+    }
+}

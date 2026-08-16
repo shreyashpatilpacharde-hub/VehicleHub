@@ -1,0 +1,397 @@
+/* ================= MAIN PAGE ================= */
+
+.admin-orders-page {
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    background: #f7f9fc;
+
+    color: #1f2937;
+
+    padding: 40px 55px;
+
+    font-family: Arial, sans-serif;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ================= BACK BUTTON ================= */
+
+.admin-orders-back {
+
+    position: relative;
+
+    left: 0;
+
+    top: 0;
+
+    display: block;
+
+    margin-right: auto;
+
+    padding: 9px 16px;
+
+    border: 1px solid #d8e2ef;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #315b85;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+.admin-orders-back:hover {
+
+    background: #eef5fc;
+
+    border-color: #b9cee5;
+
+    color: #23496f;
+
+    transform: translateX(-2px);
+
+}
+
+
+/* ================= HEADER ================= */
+
+.admin-orders-header {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    margin-bottom: 35px;
+
+}
+
+.admin-orders-header p {
+
+    margin: 0 0 8px;
+
+    color: #5d7fa3;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+}
+
+.admin-orders-header h1 {
+
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 32px;
+
+}
+
+.admin-orders-header span {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color: #718096;
+
+    font-size: 14px;
+
+}
+
+
+/* ================= CONTAINER ================= */
+
+.admin-orders-container {
+
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #dfe7f1;
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 4px 18px rgba(70, 90, 110, 0.06);
+
+}
+
+
+/* ================= TABLE WRAPPER ================= */
+
+.table-wrapper {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+}
+
+
+/* ================= TABLE ================= */
+
+.orders-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 1000px;
+
+}
+
+
+/* ================= TABLE HEADER ================= */
+
+.orders-table thead {
+
+    background: #f1f5f9;
+
+}
+
+.orders-table th {
+
+    padding: 15px 12px;
+
+    text-align: left;
+
+    color: #52677d;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    border-bottom: 1px solid #dfe7f1;
+
+    white-space: nowrap;
+
+}
+
+
+/* ================= TABLE BODY ================= */
+
+.orders-table td {
+
+    padding: 14px 12px;
+
+    color: #344054;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid #edf1f5;
+
+    white-space: nowrap;
+
+}
+
+.orders-table tbody tr:hover {
+
+    background: #f8fafc;
+
+}
+
+
+/* ================= IMAGE ================= */
+
+.order-image {
+
+    width: 75px;
+
+    height: 55px;
+
+    object-fit: cover;
+
+    border-radius: 7px;
+
+    border: 1px solid #dfe7f1;
+
+}
+
+
+/* ================= PRICE ================= */
+
+.order-price {
+
+    color: #315b85 !important;
+
+    font-weight: 700;
+
+}
+
+
+/* ================= STATUS ================= */
+
+.status {
+
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    background: #edf2f7;
+
+    color: #52677d;
+
+}
+
+
+/* Pending */
+
+.status.pending {
+
+    background: #fff4d6;
+
+    color: #9a6700;
+
+}
+
+
+/* Sold */
+
+.status.sold {
+
+    background: #e6f7ec;
+
+    color: #218838;
+
+}
+
+
+/* ================= NO ORDERS ================= */
+
+.orders-message {
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+}
+
+.orders-message h3 {
+
+    margin: 0;
+
+    color: #344054;
+
+    font-size: 20px;
+
+}
+
+.orders-message p {
+
+    margin-top: 8px;
+
+    color: #8191a3;
+
+    font-size: 14px;
+
+}
+
+
+/* ================= SCROLLBAR ================= */
+
+.table-wrapper::-webkit-scrollbar {
+
+    height: 7px;
+
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+
+    background: #f1f5f9;
+
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+
+    background: #b9cee5;
+
+    border-radius: 10px;
+
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .admin-orders-page {
+
+        padding: 30px 25px;
+
+    }
+
+    .admin-orders-header h1 {
+
+        font-size: 28px;
+
+    }
+
+    .admin-orders-container {
+
+        padding: 15px;
+
+    }
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .admin-orders-page {
+
+        padding: 22px 15px;
+
+    }
+
+    .admin-orders-header {
+
+        margin-top: 25px;
+
+    }
+
+    .admin-orders-header h1 {
+
+        font-size: 26px;
+
+    }
+
+    .admin-orders-header span {
+
+        font-size: 13px;
+
+    }
+
+    .admin-orders-container {
+
+        padding: 10px;
+
+    }
+
+}

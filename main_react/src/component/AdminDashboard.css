@@ -1,0 +1,258 @@
+.admin-dashboard {
+    min-height: 100vh;
+    background: #f4f7fb;
+    color: #263746;
+    padding: 40px 50px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.admin-panel {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* Header */
+
+.admin-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 35px 40px;
+
+    background: #ffffff;
+
+    border: 1px solid #dfe7ef;
+    border-radius: 18px;
+}
+
+.admin-hero h2 {
+    margin: 0;
+    color: #263746;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.admin-hero h2::before {
+    content: "";
+    display: block;
+    width: 45px;
+    height: 4px;
+    margin-bottom: 15px;
+
+    background: #6f9fc4;
+
+    border-radius: 5px;
+}
+
+.admin-hero p {
+    margin: 10px 0 0;
+    max-width: 650px;
+
+    color: #718096;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* Logout */
+
+.admin-hero button {
+    min-width: 105px;
+    height: 44px;
+    padding: 0 20px;
+
+    border: 1px solid #cfd9e3;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #405466;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.admin-hero button:hover {
+    background: #6f9fc4;
+    border-color: #6f9fc4;
+    color: #ffffff;
+}
+
+
+/* Action Cards */
+
+.admin-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.admin-actions a {
+    position: relative;
+
+    display: flex;
+    align-items: flex-end;
+
+    min-height: 170px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #dfe7ef;
+    border-radius: 16px;
+
+    color: #34495e;
+
+    text-decoration: none;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    overflow: hidden;
+
+    transition: 0.25s ease;
+}
+
+
+/* Accent line */
+
+.admin-actions a::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: #6f9fc4;
+}
+
+
+/* Number */
+
+.admin-actions a::after {
+    position: absolute;
+
+    top: 18px;
+    right: 22px;
+
+    color: #e6edf3;
+
+    font-size: 50px;
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+.admin-actions a:nth-child(1)::after {
+    content: "01";
+}
+
+.admin-actions a:nth-child(2)::after {
+    content: "02";
+}
+
+.admin-actions a:nth-child(3)::after {
+    content: "03";
+}
+
+.admin-actions a:nth-child(4)::after {
+    content: "04";
+}
+
+
+/* Hover */
+
+.admin-actions a:hover {
+    transform: translateY(-4px);
+
+    border-color: #6f9fc4;
+
+    box-shadow: 0 15px 35px rgba(55, 80, 105, 0.12);
+
+    color: #416b8f;
+}
+
+
+/* Second Card Accent */
+
+.admin-actions a:nth-child(2)::before {
+    background: #89a8c2;
+}
+
+.admin-actions a:nth-child(2):hover {
+    border-color: #89a8c2;
+    color: #547993;
+}
+
+
+/* Tablet */
+
+@media (max-width: 850px) {
+
+    .admin-dashboard {
+        padding: 30px 25px;
+    }
+
+    .admin-hero {
+        padding: 30px;
+    }
+
+    .admin-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .admin-dashboard {
+        padding: 20px 15px;
+    }
+
+    .admin-hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px 22px;
+    }
+
+    .admin-hero h2 {
+        font-size: 27px;
+    }
+
+    .admin-hero p {
+        font-size: 13px;
+    }
+
+    .admin-hero button {
+        width: 100%;
+    }
+
+    .admin-actions {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .admin-actions a {
+        min-height: 135px;
+    }
+
+}

@@ -1,0 +1,425 @@
+/* ================================
+   SELL VEHICLE PAGE
+================================ */
+
+.sell-page {
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+
+    background: #f5f7fa;
+    color: #172033;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* Main width */
+
+.sell-page .page-shell {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+
+/* ================================
+   BACK BUTTON
+================================ */
+
+.sell-page .back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 48px;
+    padding: 9 16px;
+
+    margin-bottom: 25px;
+    margin-left: 20px;
+
+    background: #ffffff;
+    color: #315b85;
+
+    border: 1px solid #d8e2ef;
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.sell-page .back-button:hover {
+    background: #eef5fc;
+    transform: translateY(-1px);
+}
+
+.sell-page .back-button:active {
+    transform: translateY(0);
+}
+
+
+/* ================================
+   MAIN PANEL
+================================ */
+
+.sell-page .sell-panel {
+    width: 100%;
+    padding: 35px 40px;
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #dfe4ec;
+    border-radius: 14px;
+
+    box-shadow: 0 15px 40px rgba(30, 50, 80, 0.10);
+}
+
+
+/* ================================
+   HEADING
+================================ */
+
+.sell-page .sell-panel h2 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* Intro text */
+
+.sell-page .page-intro {
+    margin: 10px 0 30px;
+
+    color: #667085;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+/* ================================
+   FORM
+================================ */
+
+.sell-page .form-panel {
+    width: 100%;
+}
+
+
+/* Two columns */
+
+.sell-page .form-row {
+    display: grid !important;
+
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+
+    column-gap: 30px;
+
+    width: 100%;
+
+    margin: 0;
+}
+
+
+/* ================================
+   FIELD
+================================ */
+
+.sell-page .field-group {
+    width: 100% !important;
+
+    min-width: 0;
+
+    margin-bottom: 20px;
+}
+
+
+/* Labels */
+
+.sell-page .form-label {
+    display: block;
+
+    width: 100%;
+
+    margin-bottom: 8px;
+
+    color: #27344d;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ================================
+   INPUT
+================================ */
+
+.sell-page .input-field {
+    display: block !important;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    height: 46px !important;
+
+    padding: 0 14px !important;
+
+    box-sizing: border-box !important;
+
+    background: #ffffff !important;
+
+    color: #172033 !important;
+
+    border: 1px solid #cfd6e1 !important;
+
+    border-radius: 7px !important;
+
+    outline: none;
+
+    font-size: 14px;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* Placeholder */
+
+.sell-page .input-field::placeholder {
+    color: #8b95a5;
+}
+
+
+/* Focus */
+
+.sell-page .input-field:focus {
+    background: #ffffff !important;
+
+    border-color: #2f5bea !important;
+
+    box-shadow: 0 0 0 2px rgba(47, 91, 234, 0.12);
+}
+
+
+/* ================================
+   SELECT
+================================ */
+
+.sell-page .select-field {
+    display: block !important;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    height: 46px !important;
+
+    padding: 0 14px !important;
+
+    box-sizing: border-box !important;
+
+    background: #ffffff !important;
+
+    color: #172033 !important;
+
+    border: 1px solid #cfd6e1 !important;
+
+    border-radius: 7px !important;
+
+    outline: none;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.sell-page .select-field:focus {
+    background: #ffffff !important;
+
+    border-color: #2f5bea !important;
+
+    box-shadow: 0 0 0 2px rgba(47, 91, 234, 0.12);
+}
+
+
+.sell-page .select-field option {
+    background: #ffffff;
+
+    color: #172033;
+}
+
+
+/* ================================
+   ERROR
+================================ */
+
+.sell-page .error-text {
+    min-height: 15px;
+
+    margin: 5px 0 0;
+
+    color: #dc3545;
+
+    font-size: 11px;
+}
+
+
+/* ================================
+   IMAGE FIELD
+================================ */
+
+.sell-page .form-group {
+    width: 100%;
+
+    margin-bottom: 20px;
+}
+
+
+.sell-page .file-field {
+    display: block;
+
+    width: 100% !important;
+
+    height: 46px;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    color: #667085;
+
+    border: 1px solid #cfd6e1;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+
+.sell-page .file-field::file-selector-button {
+    margin-right: 10px;
+
+    padding: 7px 12px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background: #e9eef7;
+
+    color: #27344d;
+
+    cursor: pointer;
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+.sell-page .sell-submit {
+    display: block;
+
+    width: 100% !important;
+
+    height: 48px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #2f5bea;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.sell-page .sell-submit:hover {
+    background: #2449c7;
+
+    transform: translateY(-1px);
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 800px) {
+
+    .sell-page {
+        padding: 25px;
+    }
+
+    .sell-page .sell-panel {
+        padding: 30px;
+    }
+
+    .sell-page .form-row {
+        column-gap: 20px;
+    }
+
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .sell-page {
+        padding: 15px;
+    }
+
+    .sell-page .sell-panel {
+        padding: 25px 20px;
+    }
+
+    .sell-page .form-row {
+        grid-template-columns: 1fr !important;
+    }
+
+    .sell-page .sell-panel h2 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .sell-page .page-intro {
+        font-size: 13px;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    .sell-page .back-button {
+        height: 45px;
+        padding: 0 22px;
+        font-size: 15px;
+    }
+
+}

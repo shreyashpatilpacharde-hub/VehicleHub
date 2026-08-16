@@ -1,0 +1,357 @@
+/* =================================
+   CONTACT PAGE
+================================= */
+
+.contact-page {
+    min-height: 100vh;
+    width: 100%;
+
+    position: relative;
+
+    background: #f4f7fb;
+
+    color: #1f2937;
+
+    font-family: Arial, sans-serif;
+
+    box-sizing: border-box;
+
+    padding: 40px;
+}
+
+
+/* =================================
+   BACK BUTTON
+================================= */
+
+.contact-back-button {
+
+    position: absolute;
+
+    top: 35px;
+    left: 35px;
+
+    padding: 9px 16px;
+
+    background: #ffffff;
+
+    color: #315b85;
+
+    border: 1px solid #d8e2ef;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Back Button Hover */
+
+.contact-back-button:hover {
+
+    background: #eef5fc;
+
+    color: #23496f;
+
+    border-color: #b9cee5;
+
+    transform: translateX(-2px);
+
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.20);
+}
+
+
+/* =================================
+   MAIN CONTENT
+================================= */
+
+.contact-content {
+
+    min-height: calc(100vh - 80px);
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    padding: 70px 20px 30px;
+}
+
+
+/* =================================
+   CONTACT CARD
+================================= */
+
+.contact-card {
+
+    width: 100%;
+
+    max-width: 720px;
+
+    background: #ffffff;
+
+    padding: 45px 50px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 18px;
+
+    box-shadow: 0 15px 40px rgba(30, 58, 138, 0.10);
+}
+
+
+/* =================================
+   HEADING
+================================= */
+
+.contact-card h2 {
+
+    margin: 0;
+
+    text-align: center;
+
+    color: #172554;
+
+    font-size: 34px;
+
+    font-weight: 800;
+}
+
+
+/* Blue Line */
+
+.contact-card h2::after {
+
+    content: "";
+
+    display: block;
+
+    width: 55px;
+
+    height: 4px;
+
+    margin: 12px auto 0;
+
+    background: #2563eb;
+
+    border-radius: 5px;
+}
+
+
+/* =================================
+   INTRO TEXT
+================================= */
+
+.contact-intro {
+
+    margin: 22px 0 30px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =================================
+   CONTACT ITEM
+================================= */
+
+.contact-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 20px 10px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    transition: all 0.2s ease;
+}
+
+
+/* Last Item */
+
+.contact-item:last-child {
+
+    border-bottom: none;
+}
+
+
+/* =================================
+   ICON
+================================= */
+
+.contact-icon {
+
+    width: 20px;
+
+    min-width: 20px;
+
+    color: #2563eb;
+
+    font-size: 18px;
+}
+
+
+/* =================================
+   TEXT
+================================= */
+
+.contact-item span {
+
+    color: #475569;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+/* =================================
+   ITEM HOVER
+================================= */
+
+.contact-item:hover {
+
+    padding-left: 16px;
+
+    background: #f8fafc;
+}
+
+.contact-item:hover span {
+
+    color: #172554;
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 800px) {
+
+    .contact-page {
+
+        padding: 30px;
+    }
+
+
+    .contact-back-button {
+
+        top: 25px;
+
+        left: 25px;
+    }
+
+
+    .contact-content {
+
+        padding-top: 80px;
+    }
+
+
+    .contact-card {
+
+        padding: 35px;
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .contact-page {
+
+        padding: 15px;
+    }
+
+
+    .contact-back-button {
+
+        position: relative;
+
+        top: auto;
+
+        left: auto;
+
+        margin: 5px 0 15px;
+
+        padding: 10px 18px;
+
+        font-size: 14px;
+    }
+
+
+    .contact-content {
+
+        min-height: auto;
+
+        padding: 20px 0 30px;
+
+        display: block;
+    }
+
+
+    .contact-card {
+
+        padding: 30px 20px;
+
+        border-radius: 14px;
+    }
+
+
+    .contact-card h2 {
+
+        font-size: 28px;
+    }
+
+
+    .contact-intro {
+
+        font-size: 14px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .contact-item {
+
+        gap: 14px;
+
+        padding: 17px 5px;
+    }
+
+
+    .contact-item span {
+
+        font-size: 14px;
+
+        word-break: break-word;
+    }
+
+}

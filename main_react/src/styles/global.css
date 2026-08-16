@@ -1,0 +1,21 @@
+.global-shell {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #070b10 0%, #04060a 100%);
+  color: var(--text);
+}
+
+.content-wrap {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 40px;
+}
+
+.page-heading {
+  margin: 0 0 10px;
+  color: var(--heading);
+}
+
+.page-copy {
+  margin: 0;
+  color: var(--text-muted);
+}

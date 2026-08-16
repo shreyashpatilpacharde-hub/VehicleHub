@@ -1,0 +1,394 @@
+.dashboard {
+    min-height: 100vh;
+    display: flex;
+    background: #f5f7fa;
+    color: #263238;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Sidebar */
+
+.dashboard .sidebar {
+    width: 240px;
+    min-height: 100vh;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.dashboard .sidebar h2 {
+    margin: 0 0 40px;
+    padding-left: 10px;
+    color: #263238;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.dashboard .sidebar h2::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 22px;
+    margin-right: 9px;
+    background: #5b8def;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+
+/* Sidebar Menu */
+
+.dashboard .menu {
+    padding: 13px 14px;
+    margin-bottom: 7px;
+    border-radius: 8px;
+    color: #64748b;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.dashboard .menu:hover {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.dashboard .menu[href="/dashboard"] {
+    background: #e8f0fe;
+    color: #3f6fc4;
+    font-weight: 700;
+}
+
+
+/* Logout */
+
+.dashboard .logout-btn {
+    width: 100%;
+    height: 43px;
+    margin-top: auto;
+    border: 1px solid #dbe3ec;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.dashboard .logout-btn:hover {
+    background: #e8f0fe;
+    border-color: #b8ccec;
+    color: #315b9e;
+}
+
+
+/* Main Content */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+
+/* Dashboard Cards Row */
+
+.main-content > div:first-child {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px !important;
+    margin-bottom: 35px !important;
+}
+
+
+/* Cards */
+
+.dashboard-card {
+    position: relative;
+    min-height: 145px;
+    padding: 22px;
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+
+    overflow: hidden;
+    transition: 0.25s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    border-color: #cbd5e1;
+    box-shadow: 0 15px 35px rgba(71, 85, 105, 0.12);
+}
+
+
+/* Card Top Line */
+
+.dashboard-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: #5b8def;
+}
+
+
+/* Card Icon */
+
+.card-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 16px;
+
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+
+    font-size: 20px;
+}
+
+
+/* Card Heading */
+
+.dashboard-card h4 {
+    margin: 0 0 7px;
+
+    color: #64748b;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* Card Number */
+
+.dashboard-card h2 {
+    margin: 0;
+
+    color: #263238;
+
+    font-size: 28px;
+    font-weight: 800;
+}
+
+
+/* Different Card Accents */
+
+.dashboard-card:nth-child(2)::before {
+    background: #9b8de3;
+}
+
+.dashboard-card:nth-child(3)::before {
+    background: #65b891;
+}
+
+.dashboard-card:nth-child(4)::before {
+    background: #6b9de8;
+}
+
+.dashboard-card:nth-child(5)::before {
+    background: #e5a56b;
+}
+
+
+/* Vehicle Status Heading */
+
+.main-content > h3 {
+    margin: 0 0 18px;
+
+    color: #263238;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.main-content > h3::after {
+    content: "";
+
+    display: block;
+
+    width: 40px;
+    height: 3px;
+
+    margin-top: 9px;
+
+    background: #5b8def;
+    border-radius: 5px;
+}
+
+
+/* Charts */
+
+.chart-section {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 20px;
+    width: 100%;
+}
+
+
+/* Chart Box */
+
+.chart-box {
+    min-height: 370px;
+    padding: 25px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.chart-box h3 {
+    margin: 0 0 20px;
+
+    color: #263238;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* Doughnut */
+
+.chart-box canvas {
+    max-height: 300px;
+}
+
+
+/* Tablet */
+
+@media (max-width: 1200px) {
+
+    .main-content > div:first-child {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .chart-section {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .dashboard .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        padding: 30px 25px;
+    }
+
+    .main-content > div:first-child {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-section {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .dashboard .sidebar {
+        width: 100%;
+        min-height: auto;
+
+        padding: 18px;
+
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .dashboard .sidebar h2 {
+        margin-bottom: 20px;
+        padding-left: 0;
+    }
+
+    .dashboard .menu {
+        margin-bottom: 4px;
+    }
+
+    .dashboard .logout-btn {
+        margin-top: 15px;
+    }
+
+    .main-content {
+        padding: 22px 15px;
+    }
+
+    .main-content > div:first-child {
+        grid-template-columns: 1fr;
+        gap: 14px !important;
+        margin-bottom: 28px !important;
+    }
+
+    .dashboard-card {
+        min-height: 130px;
+    }
+
+    .chart-section {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-box {
+        min-height: 320px;
+        padding: 18px;
+    }
+
+}
+
+.chatbot-icon {
+
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #2196f3;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}

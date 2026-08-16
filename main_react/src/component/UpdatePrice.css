@@ -1,0 +1,45 @@
+.update-price-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #090d13 0%, #06090f 100%);
+  padding: 24px;
+}
+
+.update-price-card {
+  max-width: 520px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.30);
+}
+
+.update-price-card h3 {
+  margin: 0 0 20px;
+  color: var(--heading);
+}
+
+.update-price-card form {
+  display: grid;
+  gap: 18px;
+}
+
+.update-price-card input {
+  width: 100%;
+  background: #0f1724;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  color: var(--text);
+  padding: 14px 16px;
+}
+
+.update-price-card input:focus {
+  outline: none;
+  border-color: rgba(255, 191, 0, 0.6);
+  box-shadow: 0 0 0 4px rgba(255, 191, 0, 0.12);
+}
+
+.update-price-card button {
+  width: 100%;
+  border-radius: 18px;
+}

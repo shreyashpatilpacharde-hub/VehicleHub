@@ -1,0 +1,336 @@
+/* ================= HOME PAGE ================= */
+
+.home-page {
+    min-height: 100vh;
+    width: 100%;
+
+    background: #f5f7fa;
+    color: #1f2937;
+
+    font-family: Arial, sans-serif;
+
+    box-sizing: border-box;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.home-navbar {
+    height: 75px;
+
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+
+    padding: 0 60px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    box-sizing: border-box;
+}
+
+.home-navbar h2 {
+    margin: 0;
+
+    color: #1e3a8a;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    margin-right: auto;
+}
+
+.home-login-btn {
+    padding: 11px 25px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #1e3a8a;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.home-login-btn:hover {
+    background: #2563eb;
+}
+
+.home-nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.home-admin-btn {
+    padding: 11px 22px;
+    /* border: 1px solid #1e3a8a;
+    border-radius: 7px; */
+
+    background: #ffffff;
+    color: #1e3a8a;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.home-admin-btn:hover {
+    background: #ffffff;
+    color: rgb(59, 45, 72);
+}
+
+
+/* ================= MAIN CONTENT ================= */
+
+.home-content {
+    min-height: 500px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 60px 80px;
+
+    box-sizing: border-box;
+}
+
+
+/* ================= TEXT ================= */
+
+.home-text {
+    width: 55%;
+}
+
+.home-label {
+    margin: 0 0 12px;
+
+    color: #2563eb;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.home-text h1 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 48px;
+    line-height: 1.15;
+
+    font-weight: 800;
+}
+
+.home-description {
+    max-width: 550px;
+
+    margin: 20px 0 28px;
+
+    color: #6b7280;
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* ================= GET STARTED ================= */
+
+.get-started-btn {
+    padding: 14px 30px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #1e3a8a;
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.get-started-btn:hover {
+    background: #2563eb;
+
+    transform: translateY(-2px);
+}
+
+
+/* ================= IMAGE AREA ================= */
+
+.home-image {
+    width: 45%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.car-shape {
+    width: 350px;
+    height: 250px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #dbeafe;
+
+    border-radius: 30px;
+
+    font-size: 130px;
+
+    box-shadow: 0 20px 45px rgba(30, 58, 138, 0.15);
+}
+
+
+/* ================= FEATURES ================= */
+
+.home-features {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+
+    padding: 0 80px 50px;
+
+    box-sizing: border-box;
+}
+
+.feature-card {
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    box-sizing: border-box;
+
+    transition: 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #2563eb;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card h3 {
+    margin: 0 0 10px;
+
+    color: #1e3a8a;
+
+    font-size: 18px;
+}
+
+.feature-card p {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* ================= TABLET ================= */
+
+@media (max-width: 900px) {
+
+    .home-navbar {
+        padding: 0 30px;
+    }
+
+    .home-content {
+        padding: 50px 40px;
+    }
+
+    .home-text h1 {
+        font-size: 40px;
+    }
+
+    .home-features {
+        padding: 0 40px 40px;
+    }
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .home-navbar {
+        height: 65px;
+
+        padding: 0 20px;
+    }
+
+    .home-navbar h2 {
+        font-size: 21px;
+    }
+
+    .home-login-btn {
+        padding: 9px 18px;
+    }
+
+    .home-content {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 45px 20px;
+    }
+
+    .home-text {
+        width: 100%;
+    }
+
+    .home-text h1 {
+        font-size: 32px;
+    }
+
+    .home-description {
+        font-size: 14px;
+    }
+
+    .home-image {
+        width: 100%;
+
+        margin-top: 40px;
+    }
+
+    .car-shape {
+        width: 280px;
+        height: 190px;
+
+        font-size: 100px;
+    }
+
+    .home-features {
+        grid-template-columns: 1fr;
+
+        padding: 0 20px 30px;
+    }
+
+}

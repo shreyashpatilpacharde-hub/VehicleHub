@@ -1,0 +1,22 @@
+{
+    "folders": [
+		{
+			"path": "../../Python_api"
+		},
+		{
+			"path": "../../Node"
+		},
+		{
+			"path": "../../JavaScript"
+		},
+		{
+			"path": "../../Node_api"
+		},
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../Project"
+		}
+	]
+}
