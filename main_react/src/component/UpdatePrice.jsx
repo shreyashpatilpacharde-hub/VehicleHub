@@ -17,7 +17,7 @@ function UpdatePrice() {
         try {
 
             const res = await axios.put(
-                `http://localhost:3000/admin/update-price/${id}`,
+                `https://vehiclehub-viee.onrender.com/admin/update-price/${id}`,
                 {
                     price
                 }

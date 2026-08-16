@@ -44,10 +44,10 @@ function Dashboard() {
     useEffect(() => {
         loadDashboard();
 
-        axios.get("http://localhost:3000/vehicle-status")
+        axios.get("https://vehiclehub-viee.onrender.com/vehicle-status")
           .then((res) => setStatus(res.data));
 
-        axios.get("http://localhost:3000/brand-chart")
+        axios.get("https://vehiclehub-viee.onrender.com/brand-chart")
           .then((res) => {
             setBrandData(res.data);
           });
@@ -117,7 +117,7 @@ function Dashboard() {
 
         try {
 
-            const res = await axios.get("http://localhost:3000/admin/dashboard");
+            const res = await axios.get("https://vehiclehub-viee.onrender.com/admin/dashboard");
 
             setDashboard(res.data);
 
@@ -133,7 +133,7 @@ function Dashboard() {
 
            
         await axios.delete(
-            `http://localhost:3000/logout/${id}`
+            `https://vehiclehub-viee.onrender.com/logout/${id}`
         )
         
         sessionStorage.clear();

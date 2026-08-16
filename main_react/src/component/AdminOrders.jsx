@@ -18,7 +18,7 @@ function AdminOrders() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3000/admin/orders"
+                "https://vehiclehub-viee.onrender.com/admin/orders"
             );
 
             setOrders(res.data.orders || []);
@@ -59,7 +59,7 @@ function AdminOrders() {
             return image;
         }
 
-        return `http://localhost:3000/uploads/${image}`;
+        return `https://vehiclehub-viee.onrender.com/uploads/${image}`;
 
     };
 

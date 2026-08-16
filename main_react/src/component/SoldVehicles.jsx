@@ -23,7 +23,7 @@ function SoldVehicles() {
         try {
 
             const res = await axios.get(
-                `http://localhost:3000/admin/sold?page=${page}`
+                `https://vehiclehub-viee.onrender.com/admin/sold?page=${page}`
             );
 
             setSoldVehicles(res.data.vehicles);
@@ -44,7 +44,7 @@ function SoldVehicles() {
         try {
 
             const res = await axios.post(
-                "http://localhost:3000/admin/search-sold",
+                "https://vehiclehub-viee.onrender.com/admin/search-sold",
                 {
                     search
                 }

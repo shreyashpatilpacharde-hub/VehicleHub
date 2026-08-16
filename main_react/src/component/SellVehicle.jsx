@@ -93,7 +93,7 @@ function SellVehicle() {
                 };
 
                 const res = await axios.post(
-                    "http://localhost:3000/sell",
+                    "https://vehiclehub-viee.onrender.com/sell",
                     data
                 );
 

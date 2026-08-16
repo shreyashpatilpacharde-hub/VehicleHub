@@ -19,7 +19,7 @@ function BuyVehicle() {
         try {
 
             const res = await axios.get(
-                `http://localhost:3000/buy?page=${page}`
+                `https://vehiclehub-viee.onrender.com/buy?page=${page}`
             );
 
             setVehicles(res.data.vehicles);
@@ -60,7 +60,7 @@ function BuyVehicle() {
         }
 
         const res = await axios.post(
-            "http://localhost:3000/cart",
+            "https://vehiclehub-viee.onrender.com/cart",
             {
                 user_id,
                 vehicle_id
@@ -93,7 +93,7 @@ function BuyVehicle() {
         try {
 
             const res = await axios.post(
-                "http://localhost:3000/search",
+                "https://vehiclehub-viee.onrender.com/search",
                 {
                     search
                 }
@@ -188,7 +188,7 @@ function BuyVehicle() {
                             <div className="vehicle-image-section">
 
                                 <img
-                                    src={`http://localhost:3000/uploads/${v.vehicle_image}`}
+                                    src={`https://vehiclehub-viee.onrender.com/uploads/${v.vehicle_image}`}
                                     alt="Vehicle"
                                     className="vehicle-image"
                                 />

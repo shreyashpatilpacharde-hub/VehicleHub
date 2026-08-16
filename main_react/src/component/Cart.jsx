@@ -37,7 +37,7 @@ function Cart() {
         try {
 
             const res = await axios.get(
-                `http://localhost:3000/cart/${user_id}`
+                `https://vehiclehub-viee.onrender.com/cart/${user_id}`
             );
 
             console.log("Cart Data:", res.data.cart);
@@ -66,7 +66,7 @@ function Cart() {
         try {
 
             await axios.delete(
-                `http://localhost:3000/cart/${user_id}/${vehicle_id}`
+                `https://vehiclehub-viee.onrender.com/cart/${user_id}/${vehicle_id}`
             );
 
             alert("Vehicle removed from cart");
@@ -120,7 +120,7 @@ function Cart() {
              */
 
             const orderRes = await axios.get(
-                `http://localhost:3000/orders/${user_id}`
+                `https://vehiclehub-viee.onrender.com/orders/${user_id}`
             );
 
 
@@ -164,7 +164,7 @@ function Cart() {
              */
 
             const paymentRes = await axios.put(
-                `http://localhost:3000/orders/${order.order_id}/payment`
+                `https://vehiclehub-viee.onrender.com/orders/${order.order_id}/payment`
             );
 
 
@@ -213,7 +213,7 @@ function Cart() {
         }
 
 
-        return `http://localhost:3000/uploads/${image}`;
+        return `https://vehiclehub-viee.onrender.com/uploads/${image}`;
 
     };
 

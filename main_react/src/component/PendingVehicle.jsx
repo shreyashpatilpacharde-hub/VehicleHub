@@ -18,7 +18,7 @@ function AdminPendingVehicles() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3000/admin/pending"
+                "https://vehiclehub-viee.onrender.com/admin/pending"
             );
 
             setVehicles(res.data);
@@ -66,7 +66,7 @@ function AdminPendingVehicles() {
 
             const res = await axios.put(
 
-                `http://localhost:3000/admin/update-price/${id}`,
+                `https://vehiclehub-viee.onrender.com/admin/update-price/${id}`,
 
                 {
                     sold_price: sold_price
@@ -183,7 +183,7 @@ function AdminPendingVehicles() {
 
                                             <td>
                                                 <img
-                                                    src={`http://localhost:3000/uploads/${vehicle.vehicle_image}`}
+                                                    src={`https://vehiclehub-viee.onrender.com/uploads/${vehicle.vehicle_image}`}
                                                     width="80"
                                                     height="60"
                                                     alt="Vehicle"

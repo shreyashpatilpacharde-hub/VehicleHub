@@ -17,7 +17,7 @@ function Upload_image() {
         formData.append("image", image);
         
         try {
-            const res = await axios.post("http://localhost:3000/upload", formData);
+            const res = await axios.post("https://vehiclehub-viee.onrender.com/upload", formData);
             console.log("Success!", res.data);
             alert(`Image uploaded! Filename: ${res.data.image}`);
         } catch (err) {

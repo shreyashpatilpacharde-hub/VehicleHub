@@ -23,7 +23,7 @@ function BuyHistory() {
         try {
 
             const res = await axios.get(
-                `http://localhost:3000/admin/buy-history?page=${page}`
+                `https://vehiclehub-viee.onrender.com/admin/buy-history?page=${page}`
             );
 
             setHistory(res.data.history);
@@ -44,7 +44,7 @@ function BuyHistory() {
         try {
 
             const res = await axios.post(
-                "http://localhost:3000/admin/search-history",
+                "https://vehiclehub-viee.onrender.com/admin/search-history",
                 {
                     search
                 }

@@ -28,7 +28,7 @@ function AdminLogin() {
         try {
 
             const res = await axios.post(
-                "http://localhost:3000/admin/login",
+                "https://vehiclehub-viee.onrender.com/admin/login",
                 admin
             );
 

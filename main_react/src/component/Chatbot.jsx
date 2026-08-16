@@ -37,7 +37,7 @@ function Chatbot() {
         try {
 
             const response = await axios.post(
-                "http://localhost:3000/chat",
+                "https://vehiclehub-viee.onrender.com/chat",
                 {
                     message: question
                 }
