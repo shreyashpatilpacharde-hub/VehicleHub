@@ -1,11 +1,11 @@
+require("dotenv").config(); // MUST be first — loads .env before anything else
+
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
-const transporter = require("./mailer");
+const transporter = require("./mailer"); // mailer now reads env vars correctly
 const multer = require("multer");
 const path = require("path");
-const dotenv=require("dotenv");
-dotenv.config();
 const OpenAI=require("openai");
 
 const app = express();
@@ -73,13 +73,14 @@ app.post("/register", async (req, res) => {
         try {
 
             await transporter.sendMail({
-                from: '"Vehicle Management System" <shreyashpatil.pacharde@gmail.com>',
+                from: `"VehicleHub" <${process.env.BREVO_FROM_EMAIL}>`,
                 to: email,
-                subject: "Registration Successful",
+                subject: "Registration Successful – VehicleHub",
                 html: `
-                    <h2>Hello ${name}</h2>
-                    <p>Welcome to Vehicle Management System.</p>
-                    <p>Your Registration is Successful.</p>
+                    <h2>Hello ${name} 👋</h2>
+                    <p>Welcome to <strong>VehicleHub</strong>.</p>
+                    <p>Your registration is successful. You can now login and explore vehicles.</p>
+                    <br/><p style="color:#888">– Team VehicleHub</p>
                 `
             });
 
@@ -124,12 +125,14 @@ app.post("/login", async (req, res) => {
         try {
 
             await transporter.sendMail({
-                from: '"Vehicle Management System" <shreyashpatil.pacharde@gmail.com>',
+                from: `"VehicleHub" <${process.env.BREVO_FROM_EMAIL}>`,
                 to: user[0].email,
-                subject: "Login Successful",
+                subject: "Login Alert – VehicleHub",
                 html: `
-                    <h2>Hello ${user[0].name}</h2>
-                    <p>You have successfully logged in.</p>
+                    <h2>Hello ${user[0].name} 👋</h2>
+                    <p>You have successfully logged in to <strong>VehicleHub</strong>.</p>
+                    <p>Time: ${new Date().toLocaleString()}</p>
+                    <br/><p style="color:#888">– Team VehicleHub</p>
                 `
             });
 
