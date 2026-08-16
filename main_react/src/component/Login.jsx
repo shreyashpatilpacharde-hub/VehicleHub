@@ -12,18 +12,22 @@ function Login() {
         password: ""
     });
 
-    const changeHandler = (e) => {
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState({ text: "", type: "" }); // type: "success" | "error"
 
+    const changeHandler = (e) => {
         setUser({
             ...user,
             [e.target.name]: e.target.value
         });
-
     };
 
     const submitHandler = async (e) => {
 
         e.preventDefault();
+
+        setLoading(true);
+        setMessage({ text: "", type: "" });
 
         try {
 
@@ -34,32 +38,24 @@ function Login() {
 
             if (res.data.message === "Login Successful") {
 
-                
-
-                // Save User Data
-            
-
                 sessionStorage.setItem("user_id", res.data.user_id);
                 sessionStorage.setItem("name", res.data.name);
                 sessionStorage.setItem("email", res.data.email);
                 sessionStorage.setItem("mobile", res.data.mobile);
 
-                alert(res.data.message);
+                setMessage({ text: "✅ Login Successful! Redirecting...", type: "success" });
 
-                navigate("/dashboard");
+                setTimeout(() => navigate("/dashboard"), 1000);
 
             } else {
-
-                alert(res.data.message);
-
+                setMessage({ text: `⚠️ ${res.data.message}`, type: "error" });
             }
 
         } catch (err) {
-
             console.log(err);
-
-            alert("Server Error");
-
+            setMessage({ text: "❌ Server Error. Please try again.", type: "error" });
+        } finally {
+            setLoading(false);
         }
 
     };
@@ -78,6 +74,23 @@ function Login() {
                     <form className="auth-form" onSubmit={submitHandler}>
                         <h2>Sign in to your account</h2>
                         <p>Enter your email and password to continue.</p>
+
+                        {/* In-page status message */}
+                        {message.text && (
+                            <div style={{
+                                padding: "12px 16px",
+                                borderRadius: "8px",
+                                marginBottom: "16px",
+                                fontWeight: 500,
+                                fontSize: "14px",
+                                backgroundColor: message.type === "success" ? "#d1fae5" : "#fee2e2",
+                                color: message.type === "success" ? "#065f46" : "#991b1b",
+                                border: `1px solid ${message.type === "success" ? "#6ee7b7" : "#fca5a5"}`
+                            }}>
+                                {message.text}
+                            </div>
+                        )}
+
                         <div className="form-group">
                             <label className="label-text" htmlFor="email">Email address</label>
                             <input
@@ -104,10 +117,18 @@ function Login() {
                                 required
                             />
                         </div>
-                        <button type="submit" className="button-primary">Sign In</button>
+
+                        <button
+                            type="submit"
+                            className="button-primary"
+                            disabled={loading}
+                            style={{ opacity: loading ? 0.7 : 1, cursor: loading ? "not-allowed" : "pointer" }}
+                        >
+                            {loading ? "Signing In..." : "Sign In"}
+                        </button>
+
                         <div className="auth-actions">
                             <Link to="/register">Create new account</Link>
-                            
                         </div>
                     </form>
                 </div>

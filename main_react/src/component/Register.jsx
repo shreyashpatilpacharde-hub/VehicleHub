@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 
 function Register() {
@@ -13,6 +13,8 @@ function Register() {
     });
 
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState({ text: "", type: "" }); // type: "success" | "error"
 
     const handleChange = (e) => {
 
@@ -42,8 +44,6 @@ function Register() {
                 error = "Mobile Number must be 10 digits";
             }
         }
-
-        
 
         setErrors({
             ...errors,
@@ -77,8 +77,6 @@ function Register() {
             newErrors.mobile = "Mobile Number must be 10 digits";
         }
 
-        
-
         setErrors(newErrors);
 
         return Object.keys(newErrors).length === 0;
@@ -90,36 +88,33 @@ function Register() {
 
         e.preventDefault();
 
-        if (validate()) {
+        if (!validate()) return;
 
-            try {
+        setLoading(true);
+        setMessage({ text: "", type: "" });
 
-                const res = await axios.post(
-                    "https://vehiclehub-viee.onrender.com/register",
-                    user
-                );
+        try {
 
-                alert(res.data.message);
+            const res = await axios.post(
+                "https://vehiclehub-viee.onrender.com/register",
+                user
+            );
 
-                if (res.data.message === "Registration Successful") {
-                    navigate("/login");
-                }
-
-                setUser({
-                    name: "",
-                    email: "",
-                    password: "",
-                    mobile: ""
-                });
-
-            } catch (err) {
-
-                console.log(err);
-
-                alert(err.response?.data?.message || "Registration Failed");
-
+            if (res.data.message === "Registration Successful") {
+                setMessage({ text: "✅ Registration Successful! Redirecting to login...", type: "success" });
+                setUser({ name: "", email: "", password: "", mobile: "" });
+                setTimeout(() => navigate("/login"), 1500);
+            } else {
+                setMessage({ text: `⚠️ ${res.data.message}`, type: "error" });
             }
 
+        } catch (err) {
+
+            console.log(err);
+            setMessage({ text: "❌ Registration Failed. Please try again.", type: "error" });
+
+        } finally {
+            setLoading(false);
         }
 
     };
@@ -132,6 +127,22 @@ function Register() {
                     <h2>Register your account</h2>
                     <p>Get started with Vehicle Hub to manage vehicles, bookings, and services in one place.</p>
                 </div>
+
+                {/* In-page status message */}
+                {message.text && (
+                    <div style={{
+                        padding: "12px 16px",
+                        borderRadius: "8px",
+                        marginBottom: "16px",
+                        fontWeight: 500,
+                        fontSize: "14px",
+                        backgroundColor: message.type === "success" ? "#d1fae5" : "#fee2e2",
+                        color: message.type === "success" ? "#065f46" : "#991b1b",
+                        border: `1px solid ${message.type === "success" ? "#6ee7b7" : "#fca5a5"}`
+                    }}>
+                        {message.text}
+                    </div>
+                )}
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -190,15 +201,19 @@ function Register() {
                         <p className="error-text">{errors.mobile}</p>
                     </div>
 
-                    <button type="submit" className="submit-button">
-                        Create Account
+                    <button
+                        type="submit"
+                        className="submit-button"
+                        disabled={loading}
+                        style={{ opacity: loading ? 0.7 : 1, cursor: loading ? "not-allowed" : "pointer" }}
+                    >
+                        {loading ? "Creating Account..." : "Create Account"}
                     </button>
 
                     <div className="form-links">
                         <Link to="/login" className="text-link">
                             Already have an account? Login
                         </Link>
-                        
                     </div>
                 </form>
             </div>

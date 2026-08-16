@@ -70,23 +70,18 @@ app.post("/register", async (req, res) => {
             [name, email, mobile, password]
         );
 
-        try {
-
-            await transporter.sendMail({
-                from: `"VehicleHub" <${process.env.BREVO_FROM_EMAIL}>`,
-                to: email,
-                subject: "Registration Successful – VehicleHub",
-                html: `
-                    <h2>Hello ${name} 👋</h2>
-                    <p>Welcome to <strong>VehicleHub</strong>.</p>
-                    <p>Your registration is successful. You can now login and explore vehicles.</p>
-                    <br/><p style="color:#888">– Team VehicleHub</p>
-                `
-            });
-
-        } catch (mailErr) {
-            console.log(mailErr);
-        }
+        // Fire-and-forget: don't await email, respond instantly
+        transporter.sendMail({
+            from: `"VehicleHub" <${process.env.BREVO_FROM_EMAIL}>`,
+            to: email,
+            subject: "Registration Successful – VehicleHub",
+            html: `
+                <h2>Hello ${name} 👋</h2>
+                <p>Welcome to <strong>VehicleHub</strong>.</p>
+                <p>Your registration is successful. You can now login and explore vehicles.</p>
+                <br/><p style="color:#888">– Team VehicleHub</p>
+            `
+        }).catch(mailErr => console.log("Mail error (register):", mailErr));
 
 
         res.json({
@@ -122,23 +117,18 @@ app.post("/login", async (req, res) => {
 
         }
 
-        try {
-
-            await transporter.sendMail({
-                from: `"VehicleHub" <${process.env.BREVO_FROM_EMAIL}>`,
-                to: user[0].email,
-                subject: "Login Alert – VehicleHub",
-                html: `
-                    <h2>Hello ${user[0].name} 👋</h2>
-                    <p>You have successfully logged in to <strong>VehicleHub</strong>.</p>
-                    <p>Time: ${new Date().toLocaleString()}</p>
-                    <br/><p style="color:#888">– Team VehicleHub</p>
-                `
-            });
-
-        } catch (mailErr) {
-            console.log(mailErr);
-        }
+        // Fire-and-forget: don't await email, respond instantly
+        transporter.sendMail({
+            from: `"VehicleHub" <${process.env.BREVO_FROM_EMAIL}>`,
+            to: user[0].email,
+            subject: "Login Alert – VehicleHub",
+            html: `
+                <h2>Hello ${user[0].name} 👋</h2>
+                <p>You have successfully logged in to <strong>VehicleHub</strong>.</p>
+                <p>Time: ${new Date().toLocaleString()}</p>
+                <br/><p style="color:#888">– Team VehicleHub</p>
+            `
+        }).catch(mailErr => console.log("Mail error (login):", mailErr));
 
 
         res.json({
