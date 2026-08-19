@@ -130,6 +130,26 @@ function Login() {
                         <div className="auth-actions">
                             <Link to="/register">Create new account</Link>
                         </div>
+
+                        <div style={{ marginTop: "20px", textAlign: "center", borderTop: "1px solid #e5e7eb", paddingTop: "16px" }}>
+                            <Link
+                                to="/adminlogin"
+                                style={{
+                                    display: "inline-block",
+                                    padding: "9px 20px",
+                                    backgroundColor: "#1e1e2e",
+                                    color: "#a78bfa",
+                                    borderRadius: "8px",
+                                    fontSize: "13px",
+                                    fontWeight: 600,
+                                    textDecoration: "none",
+                                    border: "1px solid #4c1d95",
+                                    letterSpacing: "0.5px"
+                                }}
+                            >
+                                🔐 Admin Access
+                            </Link>
+                        </div>
                     </form>
                 </div>
             </div>

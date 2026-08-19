@@ -1,12 +1,14 @@
-require("dotenv").config(); // MUST be first — loads .env before anything else
+require("dotenv").config(); // MUST be first
 
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
-const transporter = require("./mailer"); // mailer now reads env vars correctly
+const transporter = require("./mailer");
 const multer = require("multer");
 const path = require("path");
-const OpenAI=require("openai");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const OpenAI = require("openai");
 
 const app = express();
 
@@ -24,16 +26,26 @@ const client =new OpenAI({
   },
 });
 
-const storage = multer.diskStorage({
-    destination: "./uploads",
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + "-" + file.originalname);
+// Cloudinary Configuration
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key:    process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// Multer → Cloudinary Storage (permanent cloud storage)
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: "vehiclehub",
+        allowed_formats: ["jpg", "jpeg", "png", "gif", "webp"],
+        transformation: [{ width: 900, height: 600, crop: "limit" }]
     }
 });
 
 const upload = multer({ storage });
 
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static("uploads")); // fallback for old local files
 
 // Database Connection
 
@@ -710,13 +722,15 @@ app.post("/admin/search-sold", async (req, res) => {
 
 });
 
-// Upload Image
+// Upload Image → Cloudinary
 app.post("/upload", upload.single("image"), (req, res) => {
-    console.log(req.file);
-
+    if (!req.file) {
+        return res.status(400).json({ message: "No file uploaded" });
+    }
+    // req.file.path is the Cloudinary secure URL
     res.json({
         message: "Image Uploaded",
-        image: req.file.filename
+        image: req.file.path
     });
 });
 

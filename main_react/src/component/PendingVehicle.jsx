@@ -91,6 +91,13 @@ function AdminPendingVehicles() {
 
     };
 
+    // Smart image URL: Cloudinary full URL or fallback to local
+    const getImageUrl = (image) => {
+        if (!image) return "";
+        if (image.startsWith("http")) return image;
+        return `https://vehiclehub-viee.onrender.com/uploads/${image}`;
+    };
+
     return (
         <div className="pending-page">
 
@@ -183,7 +190,7 @@ function AdminPendingVehicles() {
 
                                             <td>
                                                 <img
-                                                    src={`https://vehiclehub-viee.onrender.com/uploads/${vehicle.vehicle_image}`}
+                                                    src={getImageUrl(vehicle.vehicle_image)}
                                                     width="80"
                                                     height="60"
                                                     alt="Vehicle"

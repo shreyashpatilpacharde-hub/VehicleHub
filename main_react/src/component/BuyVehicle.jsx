@@ -14,6 +14,13 @@ function BuyVehicle() {
 
     const limit = 2;
 
+    // Smart image URL: Cloudinary full URL or fallback to local
+    const getImageUrl = (image) => {
+        if (!image) return "";
+        if (image.startsWith("http")) return image;
+        return `https://vehiclehub-viee.onrender.com/uploads/${image}`;
+    };
+
     const loadVehicles = async () => {
 
         try {
@@ -188,7 +195,7 @@ function BuyVehicle() {
                             <div className="vehicle-image-section">
 
                                 <img
-                                    src={`https://vehiclehub-viee.onrender.com/uploads/${v.vehicle_image}`}
+                                    src={getImageUrl(v.vehicle_image)}
                                     alt="Vehicle"
                                     className="vehicle-image"
                                 />

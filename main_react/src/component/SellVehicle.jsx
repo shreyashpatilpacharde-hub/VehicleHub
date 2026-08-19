@@ -21,6 +21,8 @@ function SellVehicle() {
     });
 
     const [errors, setErrors] = useState({});
+    const [uploading, setUploading] = useState(false);
+    const [uploadMsg, setUploadMsg] = useState("");
 
     const handleChange = (e) => {
 
@@ -33,13 +35,28 @@ function SellVehicle() {
 
     };
 
-    const handleFile = (e) => {
+    const handleFile = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
 
-        setVehicle({
-            ...vehicle,
-            vehicle_image: e.target.files[0].name
-        });
+        const formData = new FormData();
+        formData.append("image", file);
 
+        try {
+            setUploading(true);
+            setUploadMsg("Uploading image...");
+            const res = await axios.post(
+                "https://vehiclehub-viee.onrender.com/upload",
+                formData
+            );
+            setVehicle({ ...vehicle, vehicle_image: res.data.image });
+            setUploadMsg("✅ Image uploaded successfully!");
+        } catch (err) {
+            console.log(err);
+            setUploadMsg("❌ Image upload failed. Try again.");
+        } finally {
+            setUploading(false);
+        }
     };
 
     const validate = () => {
@@ -423,9 +440,20 @@ function SellVehicle() {
                             <input
                                 id="vehicle_image"
                                 type="file"
+                                accept="image/*"
                                 className="file-field"
                                 onChange={handleFile}
+                                disabled={uploading}
                             />
+
+                            {uploadMsg && (
+                                <p style={{
+                                    marginTop: "6px",
+                                    fontSize: "13px",
+                                    color: uploadMsg.includes("✅") ? "#065f46" : uploadMsg.includes("❌") ? "#991b1b" : "#6366f1",
+                                    fontWeight: 500
+                                }}>{uploadMsg}</p>
+                            )}
 
                             <p className="error-text">
                                 {errors.vehicle_image}
@@ -437,8 +465,10 @@ function SellVehicle() {
                         <button
                             type="submit"
                             className="button-primary sell-submit"
+                            disabled={uploading}
+                            style={{ opacity: uploading ? 0.6 : 1, cursor: uploading ? "not-allowed" : "pointer" }}
                         >
-                            Sell Vehicle
+                            {uploading ? "Uploading Image..." : "Sell Vehicle"}
                         </button>
 
                     </form>
