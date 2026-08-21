@@ -3,17 +3,16 @@ require("dotenv").config(); // MUST be first
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
-const transporter = require("./mailer");
-const multer = require("multer");
 const path = require("path");
-const cloudinary = require("cloudinary").v2;
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const OpenAI = require("openai");
 
 const app = express();
 
-app.use(express.json());
+// Increase limit to 10mb to accept base64 images
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(cors());
+app.use("/uploads", express.static("uploads")); // fallback for any old files
 
 const client =new OpenAI({
 
@@ -26,29 +25,9 @@ const client =new OpenAI({
   },
 });
 
-// Cloudinary Configuration
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key:    process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-});
-
-// Multer → Cloudinary Storage (permanent cloud storage)
-const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-        folder: "vehiclehub",
-        allowed_formats: ["jpg", "jpeg", "png", "gif", "webp"],
-        transformation: [{ width: 900, height: 600, crop: "limit" }]
-    }
-});
-
-const upload = multer({ storage });
-
-app.use("/uploads", express.static("uploads")); // fallback for old local files
+// Cloudinary removed — using base64 images stored in DB
 
 // Database Connection
-
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
@@ -59,6 +38,18 @@ const db = mysql.createConnection({
         rejectUnauthorized: false
     }
 }).promise();
+
+// Auto-migrate: ensure vehicle_image can store base64 strings
+(async () => {
+    try {
+        await db.query(
+            "ALTER TABLE vehicles MODIFY COLUMN vehicle_image MEDIUMTEXT"
+        );
+        console.log("✅ DB Migration: vehicle_image column set to MEDIUMTEXT");
+    } catch (err) {
+        console.log("DB migration skipped (already done or table missing):", err.message);
+    }
+})();
 
 // ================= REGISTER =================
 app.post("/register", async (req, res) => {
@@ -82,18 +73,6 @@ app.post("/register", async (req, res) => {
             [name, email, mobile, password]
         );
 
-        // Fire-and-forget: don't await email, respond instantly
-        transporter.sendMail({
-            from: `"VehicleHub" <${process.env.BREVO_FROM_EMAIL}>`,
-            to: email,
-            subject: "Registration Successful – VehicleHub",
-            html: `
-                <h2>Hello ${name} 👋</h2>
-                <p>Welcome to <strong>VehicleHub</strong>.</p>
-                <p>Your registration is successful. You can now login and explore vehicles.</p>
-                <br/><p style="color:#888">– Team VehicleHub</p>
-            `
-        }).catch(mailErr => console.log("Mail error (register):", mailErr));
 
 
         res.json({
@@ -129,18 +108,6 @@ app.post("/login", async (req, res) => {
 
         }
 
-        // Fire-and-forget: don't await email, respond instantly
-        transporter.sendMail({
-            from: `"VehicleHub" <${process.env.BREVO_FROM_EMAIL}>`,
-            to: user[0].email,
-            subject: "Login Alert – VehicleHub",
-            html: `
-                <h2>Hello ${user[0].name} 👋</h2>
-                <p>You have successfully logged in to <strong>VehicleHub</strong>.</p>
-                <p>Time: ${new Date().toLocaleString()}</p>
-                <br/><p style="color:#888">– Team VehicleHub</p>
-            `
-        }).catch(mailErr => console.log("Mail error (login):", mailErr));
 
 
         res.json({
@@ -722,15 +689,15 @@ app.post("/admin/search-sold", async (req, res) => {
 
 });
 
-// Upload Image → Cloudinary
-app.post("/upload", upload.single("image"), (req, res) => {
-    if (!req.file) {
-        return res.status(400).json({ message: "No file uploaded" });
+// Upload Image → base64 passthrough (stored in DB)
+app.post("/upload", (req, res) => {
+    const { image } = req.body;
+    if (!image) {
+        return res.status(400).json({ message: "No image data provided" });
     }
-    // req.file.path is the Cloudinary secure URL
     res.json({
-        message: "Image Uploaded",
-        image: req.file.path
+        message: "Image received",
+        image: image
     });
 });
 

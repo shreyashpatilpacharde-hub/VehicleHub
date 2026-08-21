@@ -14,10 +14,11 @@ function BuyVehicle() {
 
     const limit = 2;
 
-    // Smart image URL: Cloudinary full URL or fallback to local
+    // Smart image URL: base64 data URL, Cloudinary full URL, or fallback to local
     const getImageUrl = (image) => {
         if (!image) return "";
-        if (image.startsWith("http")) return image;
+        if (image.startsWith("data:")) return image;  // base64
+        if (image.startsWith("http")) return image;    // full URL
         return `https://vehiclehub-viee.onrender.com/uploads/${image}`;
     };
 
@@ -194,11 +195,25 @@ function BuyVehicle() {
 
                             <div className="vehicle-image-section">
 
-                                <img
-                                    src={getImageUrl(v.vehicle_image)}
-                                    alt="Vehicle"
-                                    className="vehicle-image"
-                                />
+                                {getImageUrl(v.vehicle_image) ? (
+                                    <img
+                                        src={getImageUrl(v.vehicle_image)}
+                                        alt="Vehicle"
+                                        className="vehicle-image"
+                                        onError={(e) => {
+                                            e.target.style.display = "none";
+                                            const placeholder = e.target.nextSibling;
+                                            if (placeholder) placeholder.style.display = "flex";
+                                        }}
+                                    />
+                                ) : null}
+
+                                <div
+                                    className="vehicle-image-placeholder"
+                                    style={{ display: getImageUrl(v.vehicle_image) ? "none" : "flex" }}
+                                >
+                                    No Image
+                                </div>
 
                                 <div className="vehicle-price">
                                     ₹ {v.sold_price}

@@ -91,9 +91,10 @@ function AdminPendingVehicles() {
 
     };
 
-    // Smart image URL: Cloudinary full URL or fallback to local
+    // Smart image URL: base64 data URL, Cloudinary full URL, or fallback to local
     const getImageUrl = (image) => {
         if (!image) return "";
+        if (image.startsWith("data:")) return image;  // base64
         if (image.startsWith("http")) return image;
         return `https://vehiclehub-viee.onrender.com/uploads/${image}`;
     };

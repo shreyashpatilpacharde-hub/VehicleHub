@@ -47,12 +47,15 @@ function AdminOrders() {
     }, []);
 
 
-    // ================= IMAGE =================
-
+    // Smart image URL: base64 data URL, Cloudinary full URL, or fallback to local
     const getImage = (image) => {
 
         if (!image) {
             return "";
+        }
+
+        if (image.startsWith("data:")) {
+            return image;  // base64
         }
 
         if (image.startsWith("http")) {

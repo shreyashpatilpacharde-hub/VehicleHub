@@ -35,25 +35,86 @@ function SellVehicle() {
 
     };
 
+    // Compress image: FileReader → canvas resize → JPEG base64
+    // Falls back to raw FileReader result if canvas fails (e.g. webp on some browsers)
+    const compressImage = (file) => {
+        return new Promise((resolve, reject) => {
+
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                const originalBase64 = e.target.result;
+                const img = new Image();
+
+                img.onload = () => {
+                    try {
+                        const MAX_W = 800;
+                        const MAX_H = 600;
+                        let width = img.width;
+                        let height = img.height;
+
+                        // Scale down proportionally if needed
+                        if (width > MAX_W || height > MAX_H) {
+                            const ratio = Math.min(MAX_W / width, MAX_H / height);
+                            width = Math.round(width * ratio);
+                            height = Math.round(height * ratio);
+                        }
+
+                        const canvas = document.createElement("canvas");
+                        canvas.width = width;
+                        canvas.height = height;
+
+                        const ctx = canvas.getContext("2d");
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        // Export as JPEG at 70% quality
+                        const compressed = canvas.toDataURL("image/jpeg", 0.70);
+                        resolve(compressed);
+
+                    } catch (canvasErr) {
+                        // Canvas failed (security / format issue) → use original
+                        console.warn("Canvas compression failed, using original:", canvasErr);
+                        resolve(originalBase64);
+                    }
+                };
+
+                img.onerror = () => {
+                    // Image element failed → use original FileReader result
+                    resolve(originalBase64);
+                };
+
+                img.src = originalBase64;
+            };
+
+            reader.onerror = () => reject(new Error("Failed to read file"));
+
+            reader.readAsDataURL(file);
+        });
+    };
+
     const handleFile = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
-        const formData = new FormData();
-        formData.append("image", file);
+        // Max original file size: 10MB
+        if (file.size > 10 * 1024 * 1024) {
+            setUploadMsg("❌ Image too large. Max file size is 10MB.");
+            return;
+        }
+
+        setUploading(true);
+        setUploadMsg("⏳ Processing image...");
 
         try {
-            setUploading(true);
-            setUploadMsg("Uploading image...");
-            const res = await axios.post(
-                "https://vehiclehub-viee.onrender.com/upload",
-                formData
-            );
-            setVehicle({ ...vehicle, vehicle_image: res.data.image });
-            setUploadMsg("✅ Image uploaded successfully!");
+            const base64 = await compressImage(file);
+            setVehicle((prev) => ({
+                ...prev,
+                vehicle_image: base64
+            }));
+            setUploadMsg("✅ Image ready!");
         } catch (err) {
-            console.log(err);
-            setUploadMsg("❌ Image upload failed. Try again.");
+            console.log("Image processing error:", err);
+            setUploadMsg("❌ Could not read image. Please try a different file.");
         } finally {
             setUploading(false);
         }

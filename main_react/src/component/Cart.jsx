@@ -195,23 +195,20 @@ function Cart() {
     };
 
 
-    // ================= IMAGE URL =================
-
+    // Smart image URL: base64 data URL, Cloudinary full URL, or fallback to local
     const getImageUrl = (image) => {
 
         if (!image) {
-
             return "";
-
         }
 
+        if (image.startsWith("data:")) {
+            return image;  // base64
+        }
 
         if (image.startsWith("http")) {
-
             return image;
-
         }
-
 
         return `https://vehiclehub-viee.onrender.com/uploads/${image}`;
 
@@ -291,13 +288,17 @@ function Cart() {
 
                             <div className="cart-image-section">
 
-                                <img
-                                    src={getImageUrl(
-                                        item.vehicle_image
-                                    )}
-                                    alt={item.model}
-                                    className="cart-image"
-                                />
+                                {getImageUrl(item.vehicle_image) ? (
+                                    <img
+                                        src={getImageUrl(item.vehicle_image)}
+                                        alt={item.model}
+                                        className="cart-image"
+                                    />
+                                ) : (
+                                    <div className="cart-image-placeholder">
+                                        No Image
+                                    </div>
+                                )}
 
                             </div>
 
